@@ -17,6 +17,8 @@ The way we structure our data matters - it can lead to better, simpler code in
 the future. By specifically defining what data is being sent via a Rails
 controller, we have full control over what data our frontend has access to.
 
+
+
 To follow along, run `rails db:migrate` and `rails db:seed` to set up your
 database and example data. We will continue to use our bird watching example in
 this lesson.
