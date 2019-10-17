@@ -8,15 +8,7 @@ class BirdsController < ApplicationController
     bird = Bird.find_by(:id => params[:id])
     if bird
       render json: {id: bird.id, name: bird.name, species: bird.species}
-    begin
-      render json: {message: 'Bird not found.'}
-    rescue => exception
-      
-    else
-      
-    ensure
-      
+    else 
+      render json: {message: "Bird not found."}
     end
-    end
-
 end
