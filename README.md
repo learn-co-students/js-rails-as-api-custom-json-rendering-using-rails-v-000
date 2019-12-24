@@ -21,7 +21,7 @@ To follow along, run `rails db:migrate` and `rails db:seed` to set up your
 database and example data. We will continue to use our bird watching example in
 this lesson.
 
-## Adding Additional Routes to Separate JSON Data 
+## Adding Additional Routes to Separate JSON Data
 
 The simplest way to make data more useful to us is to provide more routes and
 actions that help to divide and organize our data. For instance, we could add a
@@ -70,7 +70,7 @@ objects, but `http://localhost:3000/birds/2` will produce just one:
 We can use multiple routes to differentiate between specific requests. In an
 API, these are typically referred to as endpoints. A user of the API uses
 endpoints to access specific pieces of data. Just like a normal Rails app,
-we can create full CRUD based controllers that only render JSON. 
+we can create full CRUD based controllers that only render JSON.
 
 > **ASIDE:** If you've ever tried using `rails generate scaffold` to create a
 > resource, you'll find that this is the case. Rails has favored convention over
@@ -93,7 +93,7 @@ the moment).
 Sometimes, when sending JSON data, such as an entire model, we don't want or
 need to send the entire thing. Some data is sensitive, for instance. An API that
 sends user information might contain details of a user internally that it
-does not want to ever share externally. Sometimes, data is just extra 
+does not want to ever share externally. Sometimes, data is just extra
 clutter we don't need. Consider, for instance, the last piece of data:
 
 ```ruby
@@ -113,7 +113,7 @@ rendering, we could just pick and choose what we want to send:
 ```ruby
 def show
   bird = Bird.find_by(id: params[:id])
-  render json: {id: bird.id, name: bird.name, species: bird.species } 
+  render json: {id: bird.id, name: bird.name, species: bird.species }
 end
 ```
 
@@ -223,9 +223,9 @@ The above code would achieve the same result, producing only `id`, `name`, and
 
 ## Drawing Back the Curtain on Rendering JSON Data
 
-As we touched upon briefly in the previous lesson, the controller actions we 
-have seen so far have a bit of Rails 'magic' in them that obscures what is actually happening 
-in the render statements. The `only` and `except` keywords are actually 
+As we touched upon briefly in the previous lesson, the controller actions we
+have seen so far have a bit of Rails 'magic' in them that obscures what is actually happening
+in the render statements. The `only` and `except` keywords are actually
 parameters of the `to_json` method, obscured by that magic. The last code snippet can be
 rewritten in full to show what is actually happening:
 
@@ -247,12 +247,12 @@ do when things go wrong. In our `show` action, we are currently using
 ```ruby
 def show
   bird = Bird.find_by(id: params[:id])
-  render json: {id: bird.id, name: bird.name, species: bird.species } 
+  render json: {id: bird.id, name: bird.name, species: bird.species }
 end
 ```
 
-When using `find_by`, if the record is not found, `nil` is returned. As we have 
-it set up, if `params[:id]` does not match a valid id, `nil` will be assigned to 
+When using `find_by`, if the record is not found, `nil` is returned. As we have
+it set up, if `params[:id]` does not match a valid id, `nil` will be assigned to
 the `bird` variable.
 
 As `nil` is a _false-y_ value in Ruby, this gives us the ability to write our
