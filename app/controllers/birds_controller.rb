@@ -13,6 +13,6 @@ class BirdsController < ApplicationController
     end
   end
   
-  
+
 
 end 
