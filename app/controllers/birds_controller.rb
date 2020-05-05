@@ -13,10 +13,13 @@ class BirdsController < ApplicationController
 
     # render json: bird, only: [:id, :name, :species] # This works, too
     # render json: bird.except(:created_at, :updated_at) # This does NOT
+    # render json: bird, except: [:created_at, :updated_at] # But THIS does!
+    # render json: bird.as_json(except: [:created_at, :updated_at]) # This works as well.
 
     if bird
       # render json: { id: bird.id, name: bird.name, species: bird.species }
-      render json: bird.as_json(except: [:created_at, :updated_at]) # THIS WORKS!!!
+      # render json: bird, except: [:created_at, :updated_at]
+      render json: bird.to_json(except: [:created_at, :updated_at])
     else
       render json: { message: 'Bird not found' }
     end
